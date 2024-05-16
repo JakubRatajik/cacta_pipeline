@@ -1,2 +1,2 @@
-biopython~=1.81
-typing-extensions~=4.4.0
+biopython>=1.81
+typing-extensions>=4.4.0
