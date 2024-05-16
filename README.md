@@ -18,8 +18,8 @@ The CACTA pipeline is a tool for structural detection of transposons from the CA
 
 - VSEARCH
 
-    - Binaries, source code as well as installation manual are available [here](https://github.com/torognes/vsearch).
-    - To clone the repository and build VSEARCH yourself:
+    - The easiest way is to download VSEARCH [binary file for your OS](https://github.com/torognes/vsearch/releases/tag/v2.28.1). Available binaries, source code as well as installation manual are available [here](https://github.com/torognes/vsearch).
+    - Alternatively, clone the repository and build VSEARCH yourself:
       ```
       # clone the repo and build VSEARCH
       git clone https://github.com/torognes/vsearch.git
@@ -28,10 +28,9 @@ The CACTA pipeline is a tool for structural detection of transposons from the CA
       ./configure CFLAGS="-O3" CXXFLAGS="-O3"
       make
       make install
-
-      # add VSEARCH to the $PATH
-      export PATH=/path/to/vsearch/bin:$PATH
       ```
+    - Add VSEARCH to the $PATH
+      `export PATH=/path/to/vsearch/bin:$PATH`
 
 </details>`
 
