@@ -8,6 +8,8 @@ The CACTA pipeline is a tool for structural detection of transposons from the CA
 
 ## Prerequisities
 
+- Git for cloning the repository. Alternatively, a [ZIP](https://gitlab.fi.muni.cz/xratajik/cacta_pipeline/-/archive/master/cacta_pipeline-master.zip) file can be downloaded.
+
 - Python 3.7 or newer
 
 - pip - if you have Python installed and added to the $PATH, then simply run
@@ -20,7 +22,12 @@ The CACTA pipeline is a tool for structural detection of transposons from the CA
 
 ## Installation
 
-`pip install -r requirements.txt`
+```
+git clone https://gitlab.fi.muni.cz/xratajik/cacta_pipeline # clone the repository
+cd cacta_pipeline
+chmod u+x cacta_families.sh # allow to execute shell script
+pip install -r requirements.txt # install python libraries
+```
 
 ## Usage
 
@@ -83,7 +90,7 @@ Available options:
 To check if all dependencies were installed correctly, it is recommended to test the pipeline on a test genome first. 
 
 ```
-python detect_cacta.py -i test/genome.fasta -fa test/candidates.fasta -g test/candidates.gff3 --min-len 50 --max-len 23018
+python detect_cacta.py -i test/test_genome.fasta -fa test/candidates.fasta -g test/candidates.gff3 --min-len 50 --max-len 23018
 ./cacta_families.sh -i test/candidates.fasta -g test/candidates.gff3 -m 2 -e -c
 
 ```
