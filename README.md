@@ -27,7 +27,7 @@ The CACTA pipeline is a tool for structural detection of transposons from the CA
 git clone https://gitlab.fi.muni.cz/xratajik/cacta_pipeline
 cd cacta_pipeline
 
-# allow to execute the shell script
+# allow to execute the shell script (only relevant to Unix-like OS)
 chmod u+x cacta_families.sh
 
 # install required python libraries
