@@ -120,6 +120,7 @@ To check if all dependencies were installed correctly, it is recommended to test
 
 ```
 # detect CACTA candidates
+# if not working even though Python is installed and added to the $PATH, try calling python3 instead of python
 python detect_cacta.py -i test/test_genome.fasta -fa test/candidates.fasta -g test/candidates.gff3 --min-len 50 --max-len 23018
 
 # filter candidates and define families
