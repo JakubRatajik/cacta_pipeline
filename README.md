@@ -6,6 +6,15 @@
 
 The CACTA pipeline is a tool for structural detection of transposons from the CACTA superfamily at the whole-genome level. CACTA candidates and their annotations are first obtained from the genome using a Python module and then, if required, filtered and sorted into families using a shell script utilizing [VSEARCH](https://github.com/torognes/vsearch)[^1] clustering.
 
+## Distribution
+
+| Module \ OS     | GNU/Linux     | MacOS  | Windows   |
+| --------------- | :-----------: | :----: | :-------: |
+| Detect CACTA    |  ✔            |  ✔     |  ✔       |
+| CACTA families  |  ✔            |  ✔     |  (✔)[^2] |
+
+[^2]: CACTA families is made for Unix-like-OS shell. However, it can be run under Windows by either using [Git BASH](https://git-scm.com/download/win) or [WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
+
 ## Prerequisities
 
 - Git for cloning the repository. Alternatively, a [ZIP](https://gitlab.fi.muni.cz/xratajik/cacta_pipeline/-/archive/master/cacta_pipeline-master.zip) file can be downloaded.
@@ -31,6 +40,7 @@ The CACTA pipeline is a tool for structural detection of transposons from the CA
       ```
     - Add VSEARCH to the $PATH
       `export PATH=/path/to/vsearch/bin:$PATH`
+- If you're running Windows OS, either WSL or Git BASH must be installed prior using CACTA families module. See [Distribution](#distribution).
 
 </details>`
 
