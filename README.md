@@ -11,9 +11,9 @@ The CACTA pipeline is a tool for structural detection of transposons from the CA
 | Module \ OS     | GNU/Linux     | MacOS  | Windows   |
 | --------------- | :-----------: | :----: | :-------: |
 | Detect CACTA    |  ✔            |  ✔     |  ✔       |
-| CACTA families  |  ✔            |  ✔     |  (✔)[^2] |
+| CACTA families  |  ✔            |  ✔     |  *   |
 
-[^2]: CACTA families is made for Unix-like-OS shell. However, it can be run under Windows by either using [Git BASH](https://git-scm.com/download/win) or [WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
+*: CACTA families is made for Unix-like-OS shell. However, it can be run under Windows by either using [Git BASH](https://git-scm.com/download/win) or [WSL](https://learn.microsoft.com/en-us/windows/wsl/install).
 
 ## Prerequisities
 
