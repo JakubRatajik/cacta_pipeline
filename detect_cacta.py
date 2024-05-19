@@ -20,7 +20,7 @@ BASE_TO_NUM = {"A": 0, "C": 1, "G": 2, "T": 3}
 candidate_id = 1
 
 
-def tir_tsd_hash(tir: str, tsd: str, opening_tir: bool) -> int:
+def hashTTT(tir: str, tsd: str, opening_tir: bool) -> int:
     """
     For two potential matching TIRs, instead of comparing whether each base of
     one TIR corresponds to reverse complement of another TIR, number encoding
@@ -42,28 +42,27 @@ def tir_tsd_hash(tir: str, tsd: str, opening_tir: bool) -> int:
     :return: TIR + TSD representation in quaternary numeral system
     """
 
-    hash_code = 0
+    TTT_hash = 0
     exponent = 0
 
     if not opening_tir:
         tir = Seq(tir).reverse_complement()
 
     for base in tir:
-        hash_code += BASE_TO_NUM[base] * (4 ** exponent)
+        TTT_hash += BASE_TO_NUM[base] * (4 ** exponent)
         exponent += 1
 
     for base in tsd:
-        hash_code += BASE_TO_NUM[base] * (4 ** exponent)
+        TTT_hash += BASE_TO_NUM[base] * (4 ** exponent)
         exponent += 1
 
-    return hash_code
+    return TTT_hash
 
 
 def tir_tsd_condensed(tir_position: int, genome_length: int,
                       opening_tir: bool) -> bool:
     """
     Ensures that TIR and TSD are not too close to start or to end of genome.
-
     :param tir_position: position of TIR in genome
     :param genome_length: length of genome
     :param opening_tir:
@@ -76,6 +75,11 @@ def tir_tsd_condensed(tir_position: int, genome_length: int,
 
 
 def create_prefix_table(pattern: str) -> List[int]:
+    """
+    Creates prefix table for Knuth-Morris-Pratt algorithm.
+    :param pattern: pattern to be searched for
+    :return: prefix table
+    """
     pattern_length = len(pattern)
     prefix_table = [0] * pattern_length
     match_count = 0
@@ -91,11 +95,6 @@ def create_prefix_table(pattern: str) -> List[int]:
     return prefix_table
 
 
-# TODO: should not include occurrences in the name but rather tir, CACTA..
-#  but then it should also not have the pattern param...
-#  there is no check if the the fasta file is valid. it requires that
-#  sequences contain only A, C, T, G, and N letters
-#
 def find_all_tirs(tir: str, sequence: str,
                   opening_tir: bool) -> List[PositionHash]:
     """
@@ -153,7 +152,7 @@ def find_all_tirs(tir: str, sequence: str,
         if set(tir_remainder + tsd) - {"A", "C", "G", "T"} != set():
             continue
 
-        hash_code = tir_tsd_hash(tir_remainder, tsd, opening_tir)
+        hash_code = hashTTT(tir_remainder, tsd, opening_tir)
 
         occurrences.append((tir_position, hash_code))
 
@@ -201,6 +200,15 @@ def filter_matching_tirs(opening_tirs: List[PositionHash],
 def retrieve_candidates(record: Record, matching_tirs: List[TirPair],
                         tir_info: bool, elements: List[Candidate],
                         seq_id: int) -> None:
+    """
+    Retrieves candidate sequences based on the matching TIR pairs.
+    :param record: record, most probably chromosome sequence
+    :param matching_tirs: list of matching TIR pairs
+    :param tir_info: whether to include TIR information
+    :param elements: list of detected candidates
+    :param seq_id: sequence identifier
+    :return:
+    """
     global candidate_id
 
     record_title = record[0]
@@ -220,6 +228,14 @@ def retrieve_candidates(record: Record, matching_tirs: List[TirPair],
 
 def detect_cacta(record: Record, args: argparse.Namespace,
                  elements: List[Candidate], seq_id: int) -> None:
+    """
+    Detects CACTA TE candidates in input DNA sequence.
+    :param record: chromosome record
+    :param args: parsed command line arguments
+    :param elements: list of detected candidates
+    :param seq_id: sequence identifier
+    :return:
+    """
     print(f"Getting opening CACTA TIRs.")
     cacta_tirs = find_all_tirs("CACTA", record[1], True)
 
@@ -234,6 +250,13 @@ def detect_cacta(record: Record, args: argparse.Namespace,
 
 def detect_cactg(record: Record, args: argparse.Namespace,
                  elements: List[Candidate], seq_id: int) -> None:
+    """
+    Detects CACTG TE candidates in input DNA sequence.
+    :param record: chromosome record
+    :param args: parsed command line arguments
+    :param elements: list of detected candidates
+    :param seq_id: sequence identifier
+    """
     print(f"Getting opening CACTG TIRs.")
     cactg_tirs = find_all_tirs("CACTG", record[1], True)
 
@@ -288,6 +311,11 @@ def file_to_uppercase_temp(temp_handle: IO[str], in_file_name: str) -> None:
 
 
 def export_fasta(candidates: List[Candidate], out_file: str) -> None:
+    """
+    Exports candidate sequences in FASTA format.
+    :param candidates: candidate sequences
+    :param out_file: output file name
+    """
     print("\nExporting transposon sequences in FASTA format.")
 
     with open(out_file, "w") as handle:
@@ -298,6 +326,11 @@ def export_fasta(candidates: List[Candidate], out_file: str) -> None:
 
 
 def export_gff3(candidates: List[Candidate], out_file: str) -> None:
+    """
+    Exports candidates annotation in GFF3 format.
+    :param candidates: candidate sequences
+    :param out_file: output file name
+    """
     print("\nExporting transposon annotation in GFF3 format.")
 
     with open(out_file, "w") as handle:
