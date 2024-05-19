@@ -42,8 +42,6 @@ The CACTA pipeline is a tool for structural detection of transposons from the CA
       `export PATH=/path/to/vsearch/bin:$PATH`
 - If you're running Windows OS, either WSL or Git BASH must be installed prior using CACTA families module. See [Distribution](#distribution).
 
-</details>`
-
 ## Installation
 
 ```
