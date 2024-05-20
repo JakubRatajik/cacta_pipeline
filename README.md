@@ -123,13 +123,34 @@ python detect_cacta.py -i test/test_genome.fasta -fa test/candidates.fasta -g te
 
 # filter candidates and define families
 ./cacta_families.sh -i test/candidates.fasta -g test/candidates.gff3 -m 2 -e -c
-
 ```
 
 If everything was set up correctly, the overall analysis should take no more than five minutes. The Detect CACTA should identify 10 candidates and generate a FASTA file containing the element sequences and a GFF3 file containing the annotation.
 
 CACTA families should generate a single family consisting of two members, their annotation and a consensus sequence in respective files. 
 
+## Repository structure
+Here is an overview of the files and directories in this repository:
+```
+cacta_pipeline/
+│
+├── parsing/
+│ └── ... # Modules for parsing and processing input arguments
+│
+├── test/
+│ └── test_genome.fasta/ # Test genome for verifying installation
+│
+├── utils/
+│ ├── generate_artificial_genome.py # Module for generating artificial genome
+│ ├── insert_element.py # Module for inserting transposons into genome
+│ └── tir_information.py # Module for transposon TIR information extraction
+│
+├── .gitignore # Files and directories to be ignored by Git
+├── cacta_families.sh # CACTA families module of the pipeline
+├── detect_cacta.py # Detect CACTA module of the pipeline
+├── README.md # Project overview and repository structure
+└── requirements.txt # Python prerequisites
+```
 ---
 
 [^1]: Rognes T, Flouri T, Nichols B, Quince C, Mahé F. (2016) VSEARCH: a versatile open source tool for metagenomics. PeerJ 4:e2584. doi: [10.7717/peerj.2584](https://doi.org/10.7717/peerj.2584)
