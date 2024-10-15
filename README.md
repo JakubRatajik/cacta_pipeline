@@ -1,6 +1,15 @@
 # CACTA pipeline
 
-[TOC]
+- [CACTA pipeline](#cacta-pipeline)
+  * [Introduction](#introduction)
+  * [Distribution](#distribution)
+  * [Prerequisities](#prerequisities)
+  * [Installation](#installation)
+  * [Usage](#usage)
+    + [Detect CACTA](#detect-cacta)
+    + [CACTA pipeline](#cacta-pipeline-1)
+  * [Testing](#testing)
+  * [Repository structure](#repository-structure)
 
 ## Introduction
 
@@ -136,15 +145,15 @@ Here is an overview of the files and directories in this repository:
 cacta_pipeline/
 │
 ├── parsing/
-│ └── ... # Modules for parsing and processing input arguments
+│   └── ... # Modules for parsing and processing input arguments
 │
 ├── test/
-│ └── test_genome.fasta/ # Test genome for verifying installation
+│   └── test_genome.fasta/ # Test genome for verifying installation
 │
 ├── utils/
-│ ├── generate_artificial_genome.py # Module for generating artificial genome
-│ ├── insert_element.py # Module for inserting transposons into genome
-│ └── tir_information.py # Module for transposon TIR information extraction
+│   ├── generate_artificial_genome.py # Module for generating artificial genome
+│   ├── insert_element.py # Module for inserting transposons into genome
+│   └── tir_information.py # Module for transposon TIR information extraction
 │
 ├── .gitignore # Files and directories to be ignored by Git
 ├── cacta_families.sh # CACTA families module of the pipeline
